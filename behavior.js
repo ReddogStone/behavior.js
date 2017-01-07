@@ -41,12 +41,13 @@ var Behavior = (function() {
 		};
 	}
 
-	function filter(func) {
+	function filter(func, behavior) {
 		return function(event) {
 			if (!func(event)) {
 				return { done: false };
 			}
-			return { done: true, value: event };
+
+			return behavior ? behavior(event) : { done: true, value: event };
 		};
 	}
 
